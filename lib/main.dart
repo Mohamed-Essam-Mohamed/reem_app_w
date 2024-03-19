@@ -21,33 +21,39 @@ class ReemApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(430, 932),
-        minTextAdapt: true,
-        splitScreenMode: true,
+      designSize: const Size(430, 932),
+      minTextAdapt: true,
+      splitScreenMode: true,
 
-        // Use builder only if you need to use library outside ScreenUtilInit context
-        builder: (_, child) {
-          return MaterialApp(
-            localizationsDelegates: [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: ThemeMode.light,
-            locale: const Locale('en'),
-            supportedLocales: S.delegate.supportedLocales,
-            initialRoute: RegisterScreen.routeName,
-            routes: {
-              LoginScreen.routeName: (context) => LoginScreen(),
-              RegisterScreen.routeName: (context) => RegisterScreen(),
-              HomeScreen.routeName: (context) => HomeScreen(),
-              CategoryScreen.routeName: (context) => CategoryScreen(),
-              WishlistScreen.routeName: (context) => WishlistScreen(),
-            },
-          );
-        });
+      // Use builder only if you need to use library outside ScreenUtilInit context
+      builder: (_, child) {
+        return ScreenUtilInit(
+          designSize: const Size(430, 932),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          // Use builder only if you need to use library outside ScreenUtilInit context
+          builder: (_, child) {
+            return MaterialApp(
+              localizationsDelegates: [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              locale: const Locale('en'),
+              supportedLocales: S.delegate.supportedLocales,
+              initialRoute: RegisterScreen.routeName,
+              routes: {
+                LoginScreen.routeName: (context) => LoginScreen(),
+                RegisterScreen.routeName: (context) => RegisterScreen(),
+                HomeScreen.routeName: (context) => HomeScreen(),
+                CategoryScreen.routeName: (context) => CategoryScreen(),
+                WishlistScreen.routeName: (context) => WishlistScreen(),
+              },
+            );
+          },
+        );
+      },
+    );
   }
 }
